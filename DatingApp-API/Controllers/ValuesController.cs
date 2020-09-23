@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using DatingApp_API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp_API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -29,7 +31,8 @@ namespace DatingApp_API.Controllers
             var values = await _dataContext.Values.ToListAsync();
             return Ok(values);
         }
-
+        
+        [AllowAnonymous]
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
