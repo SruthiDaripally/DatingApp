@@ -24,6 +24,7 @@ namespace DatingApp_API.Controllers
             _dataContext = dataContext;
         }
 
+      [AllowAnonymous]
         // GET: api/<ValuesController>
         [HttpGet]
         public async Task<IActionResult>  GetValues()
@@ -40,7 +41,8 @@ namespace DatingApp_API.Controllers
             var value = await _dataContext.Values.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(value);
         }
-
+        
+        [AllowAnonymous]
         // POST api/<ValuesController>
         [HttpPost]
         public void Post([FromBody] string value)
