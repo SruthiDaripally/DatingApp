@@ -43,6 +43,7 @@ namespace DatingApp_API
             });
             
             services.AddCors();
+            
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDatingRepository,DatingRepository>();
