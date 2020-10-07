@@ -4,10 +4,13 @@ import {Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListsComponent } from './members/member-lists/member-lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes-guard';
 import { MemberDetailResolver } from './_resolvers/memer-detail.resolver';
+import { MemberEditResolver } from './_resolvers/memer-edit.resolver';
 import { MemberListResolver } from './_resolvers/memer-list.resolver';
 
 
@@ -20,6 +23,8 @@ export const appRoutes: Routes = [
    children: [
     {path: 'members', component: MemberListsComponent , resolve: {users : MemberListResolver}},
     {path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
+    {path: 'member/edit', component: MemberEditComponent , resolve: {user: MemberEditResolver},
+  canDeactivate: [PreventUnsavedChanges]},
     {path: 'lists', component: ListsComponent},
     {path: 'messages', component: MessagesComponent},
   ]
