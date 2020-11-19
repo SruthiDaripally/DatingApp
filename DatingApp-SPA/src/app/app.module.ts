@@ -8,6 +8,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
+
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -29,6 +31,9 @@ import { MemberListResolver } from './_resolvers/memer-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/memer-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes-guard';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { ChangeTextDirective } from './change-text.directive';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -45,7 +50,9 @@ export function tokenGetter() {
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent,
+      ChangeTextDirective
    ],
   imports: [
     BrowserModule,
@@ -64,6 +71,7 @@ export function tokenGetter() {
         disallowedRoutes: ['localhost:5000/api/auth']
       },
     }),
+    FileUploadModule
   ],
   providers: [
      AuthService,

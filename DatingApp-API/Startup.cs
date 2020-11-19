@@ -26,7 +26,7 @@ namespace DatingApp_API
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
+        {   
             Configuration = configuration;
         }
 
@@ -43,7 +43,7 @@ namespace DatingApp_API
             });
             
             services.AddCors();
-            
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDatingRepository,DatingRepository>();
@@ -93,6 +93,8 @@ namespace DatingApp_API
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }
