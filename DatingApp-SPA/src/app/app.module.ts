@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+// import { TimeAgoPipe } from 'time-ago-pipe';
 
 
 import { AppComponent } from './app.component';
@@ -37,12 +38,13 @@ import { ChangeTextDirective } from './change-text.directive';
 import { from } from 'rxjs';
 
 
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations:[
+  declarations: [
       AppComponent,
       NavComponent,
       HomeComponent,
@@ -54,7 +56,8 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      ChangeTextDirective
+      ChangeTextDirective,
+      // TimeAgoPipe
    ],
   imports: [
     BrowserModule,
