@@ -1,3 +1,5 @@
+using System;
+
 namespace DatingApp_API.Helpers
 {
     public class UserParams
@@ -21,6 +23,10 @@ namespace DatingApp_API.Helpers
         public int MaxAge { get; set; } =99;
 
         public string OrderBy { get; set; }
+
+        public Boolean Likees { get; set; } =false;
+
+        public Boolean Likers { get; set; } = false;
         
     }
 }

@@ -38,6 +38,7 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes-guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { ChangeTextDirective } from './change-text.directive';
 import { from } from 'rxjs';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 
 
@@ -93,6 +94,7 @@ export function tokenGetter() {
      UserService,
      MemberListResolver,
      MemberEditResolver,
+     ListsResolver,
      PreventUnsavedChanges
   ],
   bootstrap: [AppComponent]
