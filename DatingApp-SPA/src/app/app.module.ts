@@ -39,6 +39,8 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { ChangeTextDirective } from './change-text.directive';
 import { from } from 'rxjs';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
+import { MemberMessageComponent } from './members/member-message/member-message.component';
 
 
 
@@ -60,6 +62,7 @@ export function tokenGetter() {
       MemberEditComponent,
       PhotoEditorComponent,
       ChangeTextDirective,
+      MemberMessageComponent
       // TimeAgoPipe
    ],
   imports: [
@@ -95,6 +98,7 @@ export function tokenGetter() {
      MemberListResolver,
      MemberEditResolver,
      ListsResolver,
+     MessagesResolver,
      PreventUnsavedChanges
   ],
   bootstrap: [AppComponent]
