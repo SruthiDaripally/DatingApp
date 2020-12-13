@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+// using Microsoft.EntityFrameworkCore.Proxies;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,30 @@ namespace DatingApp_API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            // services.AddDbContext<DataContext>(x => {
+            //     x.UseLazyLoadingProxies();
+            //     x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+            // });
+
+            services.AddDbContext<DataContext>(x => 
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(x => 
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            ConfigureServices(services);
+
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.
@@ -89,9 +114,13 @@ namespace DatingApp_API
             app.UseAuthorization();
             app.UseAuthentication();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index","Fallback");
             });
 
             
